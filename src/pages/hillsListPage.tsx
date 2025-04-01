@@ -1,25 +1,20 @@
 import { useState, useEffect } from "react";
 import HillsList from "../components/hillsList";
+import { getHills } from "../services/hillsApi";
 
 export default function HillsListPage() {
   const [searchString, setSearchString] = useState("");
-  const [selectedClassification, setSelectedClassification] = useState("all");
+  const [selectedClassification, setSelectedClassification] = useState("munro");
   const [selectedDirection, setSelectedDirection] = useState("n1");
   const [pagination, setPagination] = useState(0);
 
-  const [queryPram, setQueryPram] = useState("/all");
+  const [hills, setHills] = useState([]);
 
-  //set test prams
-  useEffect(() => {
-    setSelectedClassification("munro");
-    setSearchString("Ben");
-    setSelectedDirection("n-1");
-    setPagination(1);
-  }, []);
-
-  useEffect(() => {
-    setQueryPram(CreateQuery());
-  }, [searchString, selectedClassification, selectedDirection, pagination]);
+  async function UpdateList() {
+    const query = CreateQuery();
+    const res = await getHills(query);
+    setHills(res);
+  }
 
   function CreateQuery() {
     let _query =
@@ -35,6 +30,17 @@ export default function HillsListPage() {
     }
     return _query;
   }
+  //set test prams
+  // useEffect(() => {
+  //   setSelectedClassification("munro");
+  //   setSearchString("More");
+  //   setSelectedDirection("n-1");
+  //   setPagination(1);
+  // }, []);
+
+  useEffect(() => {
+    UpdateList();
+  }, [searchString, selectedClassification, selectedDirection, pagination]);
 
   return (
     // h-screen items-center justify-center
@@ -75,7 +81,7 @@ export default function HillsListPage() {
               </tr>
             </thead>
             <tbody>
-              <HillsList query={queryPram}></HillsList>
+              <HillsList hills={hills}></HillsList>
             </tbody>
           </table>
         </div>

@@ -1,22 +1,8 @@
-import { useState, useEffect } from "react";
-import { getHills } from "../services/hillsApi";
-
-export default function HillsList({ query }: { query: string }) {
-  const [hills, setHills] = useState([]);
-
-  async function UpdateList() {
-    const res = await getHills(query);
-    setHills(res);
-  }
-
-  useEffect(() => {
-    UpdateList();
-  }, [query]);
-
+export default function HillsList({ hills }: { hills: never[] }) {
   return hills.map((hill: any) => (
     <tr key={hill.Number} className="bg-white drop-shadow-lg">
       <td className="rounded-s-xl "></td>
-      <td className="py-4">{hill.Number}</td>
+      <td className="py-4 pr-1">{hill.Number}</td>
       <td className="">{hill.Name}</td>
       <td className="m-auto ">
         <img
