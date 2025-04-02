@@ -7,6 +7,7 @@ import {
   LuArrowDownAZ,
   LuArrowUpZA,
 } from "react-icons/lu";
+import TextField from "@mui/material/TextField";
 
 export default function HillsListPage() {
   const [searchString, setSearchString] = useState("");
@@ -121,6 +122,15 @@ export default function HillsListPage() {
               Click on the each mountain to view details, hiking routes, maps
               and photos. Create an account to add logs and track your progress.
             </p>
+            <div className="pt-10">
+              <TextField
+                fullWidth
+                label="Search Hills"
+                onChange={(input) => {
+                  setSearchString(input.target.value);
+                }}
+              />
+            </div>
           </div>
           <table
             className=" p-2 w-full text-left table-auto 
