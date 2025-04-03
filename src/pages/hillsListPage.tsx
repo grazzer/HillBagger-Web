@@ -8,18 +8,22 @@ import {
   LuArrowUpZA,
 } from "react-icons/lu";
 import TextField from "@mui/material/TextField";
+import Pagination from "@mui/material/Pagination";
+import Typography from "@mui/material/Typography";
 
 export default function HillsListPage() {
   const [searchString, setSearchString] = useState("");
-  const [selectedClassification, setSelectedClassification] = useState("munro");
+  const [selectedClassification, setSelectedClassification] = useState("all");
   const [selectedDirection, setSelectedDirection] = useState("n1");
   const [pagination, setPagination] = useState(0);
-  const [hills, setHills] = useState([]);
+  const [hills, setHills] = useState<any[]>([]);
+  const [countHills, setCountHills] = useState<number>(1);
 
   async function UpdateList() {
     const query = CreateQuery();
-    const res = await getHills(query);
-    setHills(res);
+    const [resHills, resCount] = await getHills(query);
+    setCountHills(resCount);
+    setHills(resHills);
   }
   function CreateQuery() {
     let _query =
@@ -98,6 +102,12 @@ export default function HillsListPage() {
   function toggleBagged() {
     // TODO:
   }
+  const handleTablePageChange = (
+    event: React.ChangeEvent<unknown>,
+    value: number
+  ) => {
+    setPagination((value - 1) * 20);
+  };
 
   useEffect(() => {
     UpdateList();
@@ -211,6 +221,12 @@ export default function HillsListPage() {
               <HillsList hills={hills}></HillsList>
             </tbody>
           </table>
+          <div className="flex justify-center pb-10">
+            <Pagination
+              count={Math.floor(countHills / 20) + 1}
+              onChange={handleTablePageChange}
+            />
+          </div>
         </div>
         <div className="flex xl:basis-1/12 " />
       </div>
