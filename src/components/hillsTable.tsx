@@ -5,7 +5,7 @@ import {
   LuArrowDownAZ,
   LuArrowUpZA,
 } from "react-icons/lu";
-import HillsList from "../components/hillsList";
+import HillsTableRows from "./hillsTableRows";
 
 export default function HillsTable({
   selectedDirection,
@@ -157,7 +157,7 @@ export default function HillsTable({
         </tr>
       </thead>
       <tbody>
-        <HillsList hills={hills}></HillsList>
+        <HillsTableRows hills={hills}></HillsTableRows>
       </tbody>
     </table>
   );

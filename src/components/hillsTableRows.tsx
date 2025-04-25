@@ -1,4 +1,4 @@
-export default function HillsList({ hills }: { hills: any[] }) {
+export default function HillsTableRows({ hills }: { hills: any[] }) {
   return hills.map((hill: any) => (
     <tr key={hill.Number} className="bg-white drop-shadow-lg">
       <td className="rounded-s-xl "></td>

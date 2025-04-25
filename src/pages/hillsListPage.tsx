@@ -48,8 +48,9 @@ export default function HillsListPage() {
   }, [searchString, selectedClassification, selectedDirection, pagination]);
 
   return (
-    // h-screen items-center justify-center
+    //screen
     <div className="h-full flex flex-col bg-gray-10">
+      {/* temp Top Bar */}
       <div className="flex basis-16 bg-red-200"> </div>
       {/* classification selector  */}
       <div className="flex justify-center pt-10">
@@ -58,21 +59,13 @@ export default function HillsListPage() {
           currentSelection={selectedClassification}
         />
       </div>
+      {/* table container */}
       <div className="flex flex-row">
+        {/* sidebar */}
         <div className="flex xl:basis-1/12 " />
+        {/* Hills Table  */}
         <div className="flex flex-1 flex-col">
           <div className="flex flex-col px-5">
-            {/* <h1 className="flex py-5 text-4xl">Munros</h1>
-            <p className="py-2">
-              This page shows a list of all the Munros - which is a mountain in
-              Scotland over 3000 feet high - or 914m. The list was first
-              compiled by Sir Hugh Munro in 1891, and has been updated at
-              various times since. There are 282 Munros and 226 Munro Tops.
-            </p>
-            <p className="py-2">
-              Click on the each mountain to view details, hiking routes, maps
-              and photos. Create an account to add logs and track your progress.
-            </p> */}
             <HillsTableDescription
               selectedClassification={selectedClassification}
             />
@@ -98,6 +91,7 @@ export default function HillsListPage() {
             />
           </div>
         </div>
+        {/* sidebar */}
         <div className="flex xl:basis-1/12 " />
       </div>
     </div>
