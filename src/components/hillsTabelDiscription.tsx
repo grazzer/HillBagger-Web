@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
+import { useHillsStore } from "../hillsStore";
 
-export default function HillsTableDescription({
-  selectedClassification,
-}: {
-  selectedClassification: string;
-}) {
+export default function HillsTableDescription() {
+  const selectedClassification = useHillsStore(
+    (state) => state.selectedClassification
+  );
   const [title, setTitle] = useState<string>();
   const [description, setDescription] = useState<string>();
 

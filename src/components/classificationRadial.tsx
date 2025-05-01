@@ -5,16 +5,16 @@ import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
+import { useHillsStore } from "../hillsStore";
 
-export default function RowRadioButtonsGroup({
-  setterFunction,
-  currentSelection,
-}: {
-  setterFunction: Dispatch<SetStateAction<string>>;
-  currentSelection: string;
-}) {
+export default function ClassificationRadial() {
+  const setSelectedClassification = useHillsStore(
+    (state) => state.setSelectedClassification
+  );
+  const classification = useHillsStore((state) => state.selectedClassification);
+
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setterFunction(event.target.value);
+    setSelectedClassification(event.target.value);
   };
   return (
     <FormControl>
@@ -23,7 +23,7 @@ export default function RowRadioButtonsGroup({
         aria-labelledby="demo-row-radio-buttons-group-label"
         name="row-radio-buttons-group"
         onChange={handleChange}
-        value={currentSelection}
+        value={classification}
       >
         <FormControlLabel value="all" control={<Radio />} label="All" />
         <FormControlLabel value="munro" control={<Radio />} label="Munro" />

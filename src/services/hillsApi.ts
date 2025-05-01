@@ -3,7 +3,6 @@ import axios from "axios";
 export async function getHills(queryParams: string) {
   const query = "https://hillbagger-api-v2.onrender.com/hills" + queryParams;
   return await axios.get(query).then((response) => {
-    console.log(response.data.count);
     return [response.data.hills, response.data.count];
   });
 }

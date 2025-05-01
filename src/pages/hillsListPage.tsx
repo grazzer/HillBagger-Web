@@ -1,51 +1,31 @@
 import { useState, useEffect } from "react";
 import TextField from "@mui/material/TextField";
 import Pagination from "@mui/material/Pagination";
-import RowRadioButtonsGroup from "../components/classificationRadial";
+import ClassificationRadial from "../components/classificationRadial";
+import { useHillsStore } from "../hillsStore";
 
-import { getHills } from "../services/hillsApi";
 import HillsTable from "../components/hillsTable";
 import HillsTableDescription from "../components/hillsTabelDiscription";
 
 export default function HillsListPage() {
-  const [searchString, setSearchString] = useState<string>("");
-  const [selectedClassification, setSelectedClassification] =
-    useState<string>("all");
-  const [selectedDirection, setSelectedDirection] = useState<string>("n1");
-  const [pagination, setPagination] = useState<number>(0);
-  const [hills, setHills] = useState<any[]>([]);
-  const [countHills, setCountHills] = useState<number>(1);
+  const UpdateList = useHillsStore().updateList;
 
-  async function UpdateList() {
-    const query = CreateQuery();
-    const [resHills, resCount] = await getHills(query);
-    setCountHills(resCount);
-    setHills(resHills);
-  }
-  function CreateQuery() {
-    let _query =
-      "/" +
-      selectedClassification +
-      "?" +
-      "p=" +
-      pagination.toString() +
-      "&d=" +
-      selectedDirection;
-    if (searchString != "") {
-      _query = _query + "&s=" + searchString;
-    }
-    return _query;
-  }
+  const setSearchString = useHillsStore().setSearchString;
+  const setPagination = useHillsStore().setPagination;
+  const pagination = useHillsStore().pagination;
+
+  const countHills = useHillsStore((state) => state.countHills);
+
   const handleTablePageChange = (
     event: React.ChangeEvent<unknown>,
     value: number
   ) => {
-    setPagination((value - 1) * 20);
+    setPagination(value - 1);
   };
 
   useEffect(() => {
     UpdateList();
-  }, [searchString, selectedClassification, selectedDirection, pagination]);
+  }, []);
 
   return (
     //screen
@@ -54,10 +34,7 @@ export default function HillsListPage() {
       <div className="flex basis-16 bg-red-200"> </div>
       {/* classification selector  */}
       <div className="flex justify-center pt-10">
-        <RowRadioButtonsGroup
-          setterFunction={setSelectedClassification}
-          currentSelection={selectedClassification}
-        />
+        <ClassificationRadial />
       </div>
       {/* table container */}
       <div className="flex flex-row">
@@ -66,9 +43,7 @@ export default function HillsListPage() {
         {/* Hills Table  */}
         <div className="flex flex-1 flex-col">
           <div className="flex flex-col px-5">
-            <HillsTableDescription
-              selectedClassification={selectedClassification}
-            />
+            <HillsTableDescription />
           </div>
           <div className="pt-10">
             <TextField
@@ -79,11 +54,7 @@ export default function HillsListPage() {
               }}
             />
           </div>
-          <HillsTable
-            selectedDirection={selectedDirection}
-            setSelectedDirection={setSelectedDirection}
-            hills={hills}
-          />
+          <HillsTable />
           <div className="flex justify-center pb-10">
             <Pagination
               count={Math.floor(countHills / 20) + 1}

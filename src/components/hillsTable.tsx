@@ -5,17 +5,14 @@ import {
   LuArrowDownAZ,
   LuArrowUpZA,
 } from "react-icons/lu";
-import HillsTableRows from "./hillsTableRows";
+import HillsTableRows from "./hillsTableRow";
+import { useHillsStore } from "../hillsStore";
 
-export default function HillsTable({
-  selectedDirection,
-  setSelectedDirection,
-  hills,
-}: {
-  selectedDirection: string;
-  setSelectedDirection: Dispatch<SetStateAction<string>>;
-  hills: any[];
-}) {
+export default function HillsTable() {
+  const selectedDirection = useHillsStore((state) => state.selectedDirection);
+  const setSelectedDirection = useHillsStore(
+    (state) => state.setSelectedDirection
+  );
   function toggleNum() {
     if (selectedDirection == "n1") {
       setSelectedDirection("n-1");
@@ -157,7 +154,7 @@ export default function HillsTable({
         </tr>
       </thead>
       <tbody>
-        <HillsTableRows hills={hills}></HillsTableRows>
+        <HillsTableRows />
       </tbody>
     </table>
   );

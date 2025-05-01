@@ -1,6 +1,28 @@
-export default function HillsTableRows({ hills }: { hills: any[] }) {
-  return hills.map((hill: any) => (
-    <tr key={hill.Number} className="bg-white drop-shadow-lg">
+import { useState, useEffect } from "react";
+import { useHillsStore } from "../hillsStore";
+
+export default function HillsTableRows() {
+  const hills = useHillsStore((state) => state.hillsList);
+
+  function handleClick(selected: number) {
+    alert(selected);
+  }
+
+  if (hills[0] == null) {
+    return (
+      <tr key={0}>
+        <td>
+          <p> error no data </p>
+        </td>
+      </tr>
+    );
+  }
+  return hills.map((hill: any, index: number) => (
+    <tr
+      key={hill.Number}
+      className="bg-white drop-shadow-lg hover:bg-gray-300"
+      onClick={() => handleClick(index)}
+    >
       <td className="rounded-s-xl "></td>
       <td className="py-4 pr-1">{hill.Number}</td>
       <td className="">{hill.Name}</td>
