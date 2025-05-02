@@ -12,7 +12,6 @@ export default function HillsListPage() {
 
   const setSearchString = useHillsStore().setSearchString;
   const setPagination = useHillsStore().setPagination;
-  const pagination = useHillsStore().pagination;
 
   const countHills = useHillsStore((state) => state.countHills);
 

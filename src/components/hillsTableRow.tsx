@@ -1,11 +1,17 @@
-import { useState, useEffect } from "react";
+import { useNavigate } from "@tanstack/react-router";
 import { useHillsStore } from "../hillsStore";
 
 export default function HillsTableRows() {
   const hills = useHillsStore((state) => state.hillsList);
+  const setSelectedHillIndex = useHillsStore(
+    (state) => state.setSelectedHillIndex
+  );
+  const navigate = useNavigate();
 
-  function handleClick(selected: number) {
-    alert(selected);
+  function handleClick(selected: number, name: string) {
+    setSelectedHillIndex(selected);
+    console.log("clicked");
+    navigate({ to: "/$details", params: { details: name } });
   }
 
   if (hills[0] == null) {
@@ -21,7 +27,7 @@ export default function HillsTableRows() {
     <tr
       key={hill.Number}
       className="bg-white drop-shadow-lg hover:bg-gray-300"
-      onClick={() => handleClick(index)}
+      onClick={() => handleClick(index, hill.Name)}
     >
       <td className="rounded-s-xl "></td>
       <td className="py-4 pr-1">{hill.Number}</td>
