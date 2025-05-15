@@ -2,29 +2,29 @@ import { useState, useEffect } from "react";
 import TextField from "@mui/material/TextField";
 import Pagination from "@mui/material/Pagination";
 import ClassificationRadial from "../components/classificationRadial";
-import { useHillsStore } from "../hillsStore";
+// import { useHillsStore } from "../hillsStore";
 
 import HillsTable from "../components/hillsTable";
 import HillsTableDescription from "../components/hillsTabelDiscription";
+import { getRouteApi, useNavigate, useSearch } from "@tanstack/react-router";
 
 export default function HillsListPage() {
-  const UpdateList = useHillsStore().updateList;
+  const { searchString, pagination } = useSearch({
+    from: "/",
+  });
+  const navigate = useNavigate({ from: "/" });
 
-  const setSearchString = useHillsStore().setSearchString;
-  const setPagination = useHillsStore().setPagination;
-
-  const countHills = useHillsStore((state) => state.countHills);
+  const routeApi = getRouteApi("/");
+  const data = getRouteApi("/").useLoaderData();
+  const hills = data[0];
+  const countHills = data[1];
 
   const handleTablePageChange = (
     event: React.ChangeEvent<unknown>,
     value: number
   ) => {
-    setPagination(value - 1);
+    navigate({ search: () => ({ pagination: value - 1 }) });
   };
-
-  useEffect(() => {
-    UpdateList();
-  }, []);
 
   return (
     //screen
@@ -46,16 +46,20 @@ export default function HillsListPage() {
           </div>
           <div className="pt-10">
             <TextField
+              value={searchString}
               fullWidth
               label="Search Hills"
               onChange={(input) => {
-                setSearchString(input.target.value);
+                navigate({
+                  search: () => ({ searchString: input.target.value }),
+                });
               }}
             />
           </div>
           <HillsTable />
           <div className="flex justify-center pb-10">
             <Pagination
+              page={pagination + 1}
               count={Math.floor(countHills / 20) + 1}
               onChange={handleTablePageChange}
             />

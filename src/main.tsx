@@ -3,10 +3,9 @@ import { createRoot } from "react-dom/client";
 import "./index.css";
 import { routeTree } from "./routeTree.gen.ts";
 import { createRouter, RouterProvider } from "@tanstack/react-router";
-import App from "./App.tsx";
 
 // Create a new router instance
-const router = createRouter({ routeTree });
+const router = createRouter({ routeTree, context: { hills: [] } });
 
 // Register the router instance for type safety
 declare module "@tanstack/react-router" {

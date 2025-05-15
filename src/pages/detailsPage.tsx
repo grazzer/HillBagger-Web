@@ -1,5 +1,5 @@
+import { getRouteApi, useLoaderData, useSearch } from "@tanstack/react-router";
 import { Layout_Basic } from "../components/pageLayouts/layout_basic";
-import { useHillsStore } from "../hillsStore";
 
 function Box({
   children,
@@ -27,74 +27,77 @@ function Row({ title, data }: { title?: string; data?: string }) {
   );
 }
 export default function DetailsPage() {
-  const hills = useHillsStore((state) => state.hillsList);
-  const selectedIndex = useHillsStore((state) => state.selectedHillIndex);
-  const setSelectedIndex = useHillsStore((state) => state.setSelectedHillIndex);
-  // const pagination = useHillsStore((state) => state.pagination);
-  const setPagination = useHillsStore((state) => state.setPagination);
+  // const navigate = useNavigate({ from: "/" });
+  const data = useLoaderData({ from: "/$details" });
+  const hills = data[0];
+  const countHills = data[1];
 
+  const { selectedIndex } = useSearch({
+    from: "/$details",
+  });
   const selectedHill = hills[selectedIndex];
+  console.log(selectedHill);
+
   return (
     <Layout_Basic>
       <div className="pb-10">
-        <p className="text-4xl">Ben Nevis [Beinn Nibheis]</p>
-        <p className="text-xl"># 278</p>
+        <p className="text-4xl">{selectedHill.Name}</p>
+        <p className="text-xl"># {selectedHill.Number}</p>
       </div>
       <Box title="Height">
-        <Row title={"Height:"} data={"400m | 1200ft"} />
-        <Row title={"Drop:"} data={"1344.5m"} />
         <Row
-          title={"Top:"}
-          data={
-            "Scotland, Highland (UA), Inverness-shire (CoH), Highland (CoA)"
-          }
+          title={"Height:"}
+          data={selectedHill.Metres + "m | " + selectedHill.Feet + "ft"}
         />
+        <Row title={"Drop:"} data={selectedHill.Drop} />
+        <Row title={"Top:"} data={selectedHill.County_Top} />
       </Box>
       <Box title="Classification">
-        <Row data={"Ma,M,Sim,CoH,CoU,CoA,SIB"} />
+        <Row data={selectedHill.Classification} />
       </Box>
       <Box title="Area">
-        <Row title={"Area:"} data={"null"} />
-        <Row title={"col grid ref:"} data={"Sea"} />
-        <Row title={"col height:"} data={"0"} />
-        <Row title={"country:"} data={"s"} />
-        <Row title={"county:"} data={"null"} />
-        <Row title={"geography:"} data={"null"} />
-        <Row title={"grid ref:"} data={"null"} />
-        <Row title={"grid ref 10:"} data={"null"} />
-        <Row title={"grid ref XY:"} data={"null"} />
-        <Row title={"island:"} data={"null"} />
-        <Row title={"long:"} data={"null"} />
-        <Row title={"lat:"} data={"null"} />
-        <Row title={"parent ma:"} data={"null"} />
-        <Row title={"parent smc:"} data={"null"} />
-        <Row title={"region:"} data={"null"} />
-        <Row title={"section:"} data={"null"} />
-        <Row title={"survey:"} data={"null"} />
-        <Row title={"x cords:"} data={"null"} />
-        <Row title={"y cords:"} data={"null"} />
-        <Row title={"opposition:"} data={"null"} />
+        <Row title={"Area:"} data={selectedHill.Area} />
+        <Row title={"col grid ref:"} data={selectedHill.Col_grid_ref} />
+        <Row title={"col height:"} data={selectedHill.Col_height} />
+        <Row title={"country:"} data={selectedHill.Country} />
+        <Row title={"county:"} data={selectedHill.County} />
+        <Row title={"geography:"} data={selectedHill.Geography} />
+        <Row title={"grid ref:"} data={selectedHill.Grid_ref} />
+        <Row title={"grid ref 10:"} data={selectedHill.Grid_ref_10} />
+        <Row title={"grid ref XY:"} data={selectedHill.gridrefXY} />
+        <Row title={"island:"} data={selectedHill.Island} />
+        <Row title={"long:"} data={selectedHill.Longitude} />
+        <Row title={"lat:"} data={selectedHill.Latitude} />
+        <Row title={"parent ma:"} data={selectedHill.Parent_Ma} />
+        <Row title={"parent smc:"} data={selectedHill.Parent_SMC} />
+        <Row title={"region:"} data={selectedHill.Region} />
+        <Row title={"topo section:"} data={selectedHill.Topo_Section} />
+        <Row title={"section int:"} data={selectedHill.Section_int} />
+        <Row title={"survey:"} data={selectedHill.Survey} />
+        <Row title={"x cords:"} data={selectedHill.Xcoord} />
+        <Row title={"y cords:"} data={selectedHill.Ycoord} />
+        <Row title={"observations:"} data={selectedHill.Observations} />
       </Box>
       <Box title="Top">
-        <Row data={"Ma,M,Sim,CoH,CoU,CoA,SIB"} />
+        <Row title={"Summit Feature:"} data={selectedHill.Feature} />
       </Box>
       <Box title="Map">
-        <Row data={"Ma,M,Sim,CoH,CoU,CoA,SIB"} />
+        <Row data={"Map"} />
       </Box>
       <Box title="Bagged">
-        <Row data={"Ma,M,Sim,CoH,CoU,CoA,SIB"} />
+        <Row data={"Record"} />
       </Box>
       <Box title="wether">
-        <Row data={"Ma,M,Sim,CoH,CoU,CoA,SIB"} />
+        <Row data={"weather"} />
       </Box>
       <Box title="Photos">
-        <Row data={"Ma,M,Sim,CoH,CoU,CoA,SIB"} />
+        <Row data={"Photos"} />
       </Box>
       <Box title="History/Meaning ">
-        <Row data={"Ma,M,Sim,CoH,CoU,CoA,SIB"} />
+        <Row data={"maybe"} />
       </Box>
       <Box title="Comments">
-        <Row data={"Ma,M,Sim,CoH,CoU,CoA,SIB"} />
+        <Row data={"User Comments"} />
       </Box>
     </Layout_Basic>
   );

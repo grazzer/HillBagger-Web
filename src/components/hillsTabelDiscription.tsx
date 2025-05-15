@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
-import { useHillsStore } from "../hillsStore";
+import { useSearch } from "@tanstack/react-router";
 
 export default function HillsTableDescription() {
-  const selectedClassification = useHillsStore(
-    (state) => state.selectedClassification
-  );
+  const { classification } = useSearch({
+    from: "/",
+  });
   const [title, setTitle] = useState<string>();
   const [description, setDescription] = useState<string>();
 
   useEffect(() => {
-    switch (selectedClassification) {
+    switch (classification) {
       case "munro":
         setTitle("Munro");
         setDescription(
@@ -43,7 +43,7 @@ export default function HillsTableDescription() {
         return;
     }
     console.log(title);
-  }, [selectedClassification]);
+  }, [classification]);
 
   return (
     <div className="flex flex-col px-5">

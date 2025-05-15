@@ -1,19 +1,20 @@
-import { useNavigate } from "@tanstack/react-router";
-import { useHillsStore } from "../hillsStore";
+import { getRouteApi, useNavigate } from "@tanstack/react-router";
 
 export default function HillsTableRows() {
-  const hills = useHillsStore((state) => state.hillsList);
-  const setSelectedHillIndex = useHillsStore(
-    (state) => state.setSelectedHillIndex
-  );
+  const data = getRouteApi("/").useLoaderData();
+  const hills = data[0];
+  const countHills = data[1];
+
   const navigate = useNavigate();
 
   function handleClick(selected: number, name: string) {
-    setSelectedHillIndex(selected);
-    console.log("clicked");
-    navigate({ to: "/$details", params: { details: name } });
+    navigate({
+      from: "/",
+      to: "/$details",
+      params: { details: "name" },
+      search: () => ({ selectedIndex: selected }),
+    });
   }
-
   if (hills[0] == null) {
     return (
       <tr key={0}>

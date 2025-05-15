@@ -15,7 +15,7 @@ export function Layout_Basic(props: LayoutProps) {
             {/* sidebar */}
             <div className="flex xl:basis-1/12" />
             {/* main content*/}
-            <div className="flex  flex-col xl:basis-10/12 xl:rounded-xl my-1 p-5 bg-white ">
+            <div className="flex flex-1  flex-col xl:basis-10/12 xl:rounded-xl my-1 p-5 bg-white ">
               {props.children}
             </div>
             {/* sidebar */}

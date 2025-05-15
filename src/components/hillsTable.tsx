@@ -1,4 +1,3 @@
-import { Dispatch, SetStateAction } from "react";
 import {
   LuArrowDown01,
   LuArrowUp10,
@@ -6,13 +5,18 @@ import {
   LuArrowUpZA,
 } from "react-icons/lu";
 import HillsTableRows from "./hillsTableRow";
-import { useHillsStore } from "../hillsStore";
+import { useNavigate, useSearch } from "@tanstack/react-router";
 
 export default function HillsTable() {
-  const selectedDirection = useHillsStore((state) => state.selectedDirection);
-  const setSelectedDirection = useHillsStore(
-    (state) => state.setSelectedDirection
-  );
+  const { direction } = useSearch({
+    from: "/",
+  });
+  const navigate = useNavigate({ from: "/" });
+
+  const selectedDirection = direction;
+  function setSelectedDirection(value: string) {
+    navigate({ search: () => ({ direction: value }) });
+  }
   function toggleNum() {
     if (selectedDirection == "n1") {
       setSelectedDirection("n-1");
