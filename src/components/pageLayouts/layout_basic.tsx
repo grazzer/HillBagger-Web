@@ -8,7 +8,7 @@ export function Layout_Basic(props: LayoutProps) {
     <div className="flex h-screen flex-col">
       <div className="flex flex-1 flex-col bg-gray-100">
         {/* temp Top Bar */}
-        <div className="h-15 bg-red-200"> Header </div>
+        {/* <div className="h-15 bg-red-200"> Header </div> */}
         {/* page container */}
         <div className="flex flex-col h-full">
           <div className="flex flex-1 flex-row">

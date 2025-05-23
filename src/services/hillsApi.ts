@@ -7,6 +7,10 @@ export async function getHills(queryParams: string) {
   });
 }
 
+async function sleep(ms: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
 export async function getHillsNew(
   classification: string,
   pagination: number,
@@ -23,8 +27,10 @@ export async function getHillsNew(
     query = query + "&d=" + direction;
   }
   if (searchString) {
-    query = query + "&d=" + searchString;
+    query = query + "&s=" + searchString;
   }
+  // for testing loading page only --- remove
+  // await sleep(2000);
   return await axios.get(query).then((response) => {
     return [response.data.hills, response.data.count];
   });

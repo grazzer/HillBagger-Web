@@ -7,6 +7,7 @@ import ClassificationRadial from "../components/classificationRadial";
 import HillsTable from "../components/hillsTable";
 import HillsTableDescription from "../components/hillsTabelDiscription";
 import { getRouteApi, useNavigate, useSearch } from "@tanstack/react-router";
+import { Layout_Basic } from "../components/pageLayouts/layout_basic";
 
 export default function HillsListPage() {
   const { searchString, pagination } = useSearch({
@@ -15,7 +16,7 @@ export default function HillsListPage() {
   const navigate = useNavigate({ from: "/" });
 
   const routeApi = getRouteApi("/");
-  const data = getRouteApi("/").useLoaderData();
+  const data: [any, any] = getRouteApi("/").useLoaderData();
   const hills = data[0];
   const countHills = data[1];
 
@@ -23,14 +24,19 @@ export default function HillsListPage() {
     event: React.ChangeEvent<unknown>,
     value: number
   ) => {
-    navigate({ search: () => ({ pagination: value - 1 }) });
+    navigate({
+      search: (prev) => ({
+        classification: prev.classification,
+        pagination: value - 1,
+        direction: prev.direction,
+        searchString: prev.searchString,
+      }),
+    });
   };
 
   return (
     //screen
-    <div className="h-full flex flex-col bg-gray-10">
-      {/* temp Top Bar */}
-      <div className="flex basis-16 bg-red-200"> </div>
+    <Layout_Basic>
       {/* classification selector  */}
       <div className="flex justify-center pt-10">
         <ClassificationRadial />
@@ -51,7 +57,11 @@ export default function HillsListPage() {
               label="Search Hills"
               onChange={(input) => {
                 navigate({
-                  search: () => ({ searchString: input.target.value }),
+                  search: (prev) => ({
+                    classification: prev.classification,
+                    direction: prev.direction,
+                    searchString: input.target.value,
+                  }),
                 });
               }}
             />
@@ -68,6 +78,6 @@ export default function HillsListPage() {
         {/* sidebar */}
         <div className="flex xl:basis-1/12 " />
       </div>
-    </div>
+    </Layout_Basic>
   );
 }

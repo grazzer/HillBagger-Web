@@ -2,6 +2,7 @@ import { createFileRoute, retainSearchParams } from "@tanstack/react-router";
 import DetailsPage from "../pages/detailsPage";
 import * as z from "zod";
 import { getHillsNew } from "../services/hillsApi";
+import LoadingPage from "../pages/loadingPage";
 
 const searchParametersSchema = z.object({
   classification: z.string().catch("all"),
@@ -36,14 +37,9 @@ export const Route = createFileRoute("/$details")({
   loader: async ({
     deps: { classification, pagination, direction, searchString },
   }) => await getHillsNew(classification, pagination, direction, searchString),
+  pendingComponent: () => <LoadingPage />,
 });
 
 function RouteComponent() {
-  const { details } = Route.useParams();
-  return (
-    <div>
-      {details}
-      <DetailsPage />
-    </div>
-  );
+  return <DetailsPage />;
 }

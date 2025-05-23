@@ -17,9 +17,9 @@ export default function HillsTableRows() {
   }
   if (hills[0] == null) {
     return (
-      <tr key={0}>
+      <tr>
         <td>
-          <p> error no data </p>
+          <p> Cannot find any hills </p>
         </td>
       </tr>
     );

@@ -15,7 +15,13 @@ export default function HillsTable() {
 
   const selectedDirection = direction;
   function setSelectedDirection(value: string) {
-    navigate({ search: () => ({ direction: value }) });
+    navigate({
+      search: (prev) => ({
+        classification: prev.classification,
+        direction: value,
+        searchString: prev.searchString,
+      }),
+    });
   }
   function toggleNum() {
     if (selectedDirection == "n1") {

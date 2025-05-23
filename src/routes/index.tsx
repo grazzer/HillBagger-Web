@@ -1,5 +1,6 @@
 import {
   createFileRoute,
+  notFound,
   retainSearchParams,
   useNavigate,
 } from "@tanstack/react-router";
@@ -7,6 +8,7 @@ import HillsListPage from "../pages/hillsListPage";
 import * as z from "zod";
 import { getHillsNew } from "../services/hillsApi";
 import { useContext } from "react";
+import LoadingPage from "../pages/loadingPage";
 
 const searchParametersSchema = z.object({
   classification: z.string().catch("all"),
@@ -26,23 +28,20 @@ export const Route = createFileRoute("/")({
     direction,
     searchString,
   }),
+  // loader: async ({
+  //   deps: { classification, pagination, direction, searchString },
+  // }) => await getHillsNew(classification, pagination, direction, searchString),
+
   loader: async ({
     deps: { classification, pagination, direction, searchString },
   }) => await getHillsNew(classification, pagination, direction, searchString),
+
+  // throw new Error("cannot find data");
+  // shouldReload: false, // maybe needed?
   component: RouteComponent,
+  pendingComponent: () => <LoadingPage />,
 });
 
 function RouteComponent() {
-  const navigate = Route.useNavigate();
-
-  // const updateFilters = (name: keyof ItemFilters, value: unknown) => {
-  //   navigate({ search: (prev) => ({ ...prev, [name]: value }) });
-  // };
-
-  console.log(Route);
-  return (
-    <div id="root">
-      <HillsListPage />
-    </div>
-  );
+  return <HillsListPage />;
 }

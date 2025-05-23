@@ -4,6 +4,8 @@ import "./index.css";
 import { routeTree } from "./routeTree.gen.ts";
 import { createRouter, RouterProvider } from "@tanstack/react-router";
 
+import { StyledEngineProvider } from "@mui/material/styles";
+
 // Create a new router instance
 const router = createRouter({ routeTree, context: { hills: [] } });
 
