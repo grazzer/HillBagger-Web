@@ -1,5 +1,5 @@
 import HillsListPage from "./pages/hillsListPage.js";
-import DetailPage from "./pages/detailsPage.js";
+// import DetailPage from "./pages/detailsPage.js";
 
 export default function App() {
   return (

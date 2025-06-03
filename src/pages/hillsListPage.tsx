@@ -51,7 +51,9 @@ export default function HillsListPage() {
             <HillsTableDescription />
           </div>
           <div className="pt-10">
+            {/* TODO: text input lag when OR operator used */}
             <TextField
+              // value={searchString || ""}
               value={searchString}
               fullWidth
               label="Search Hills"
