@@ -16,6 +16,7 @@
     "@tailwindcss/vite": "^4.1.7",
     "@tanstack/react-router": "^1.119.0",
     "@tanstack/react-router-devtools": "^1.119.1",
+    "@vis.gl/react-google-maps": "^1.5.3",
     "axios": "^1.8.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",

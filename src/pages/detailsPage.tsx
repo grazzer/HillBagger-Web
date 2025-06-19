@@ -1,31 +1,11 @@
 import { getRouteApi, useLoaderData, useSearch } from "@tanstack/react-router";
 import { Layout_Basic } from "../components/pageLayouts/layout_basic";
+import Box from "../components/detailsPage/box";
+import Row from "../components/detailsPage/row";
+import ClassificationBox from "../components/detailsPage/classificationBox";
+import MapComponent from "../components/detailsPage/mapComponent";
+import WeatherComponent from "../components/detailsPage/weatherComponent";
 
-function Box({
-  children,
-  title,
-}: {
-  children: React.ReactNode;
-  title: string;
-}) {
-  return (
-    <div className="pb-5">
-      <p className="pb-1">{title}</p>
-      <div className="flex justify-around flex-col rounded-xl border border-gray-300 py-3 pl-5">
-        {children}
-      </div>
-    </div>
-  );
-}
-
-function Row({ title, data }: { title?: string; data?: string }) {
-  return (
-    <div className="flex flex-row py-1">
-      {title ? <p className="w-30">{title}</p> : null}
-      <p className="">{data}</p>
-    </div>
-  );
-}
 export default function DetailsPage() {
   // const navigate = useNavigate({ from: "/" });
   const data = useLoaderData({ from: "/$details" });
@@ -40,67 +20,92 @@ export default function DetailsPage() {
 
   return (
     <Layout_Basic>
-      <div className="pb-10">
+      <div className="mb-10">
         <p className="text-4xl">{selectedHill.Name}</p>
-        <p className="text-xl"># {selectedHill.Number}</p>
+        <div className="flex flex-row">
+          <p className="content-center text-l uppercase text-gray-400 pr-4">
+            Hill Number:
+          </p>
+          <p className="text-l"> {selectedHill.Number}</p>
+        </div>
       </div>
-      <Box title="Height">
-        <Row
-          title={"Height:"}
-          data={selectedHill.Metres + "m | " + selectedHill.Feet + "ft"}
-        />
-        <Row title={"Drop:"} data={selectedHill.Drop} />
-        <Row title={"Top:"} data={selectedHill.County_Top} />
+      {/* <div className="flex mb-7 rounded-bl-md border-b border-l border-gray-300">
+        <p className="p-2 px-5">Data</p>
+        <p className="p-2 px-5">Map</p>
+        <p className="p-2 px-5">Weather</p>
+        <p className="p-2 px-5">Photos</p>
+        <p className="p-2 px-5">Reference</p>
+      </div> */}
+      <Box title="Height" titleTwo="Prominence">
+        <>
+          <Row
+            title={"Height:"}
+            data={selectedHill.Metres + "m | " + selectedHill.Feet + "ft"}
+          />
+          {selectedHill.County_Top && (
+            <Row title={"Top:"} data={selectedHill.County_Top} />
+          )}
+        </>
+        <>
+          {selectedHill.Parent_name_Ma && (
+            <>
+              <Row title={"Parent Ma:"} data={selectedHill.Parent_name_Ma} />
+              <Row title={"Parent Ma Num:"} data={selectedHill.Parent_Ma} />
+              <Row title={"Parent SMC:"} data={selectedHill.Parent_SMC} />
+            </>
+          )}
+          <Row title={"Drop:"} data={selectedHill.Drop} />
+          <Row title={"Col Height:"} data={selectedHill.Col_height} />
+          <Row title={"Col Grid Ref:"} data={selectedHill.Col_grid_ref} />
+        </>
       </Box>
-      <Box title="Classification">
-        <Row data={selectedHill.Classification} />
+      <ClassificationBox ClassificationCSV={selectedHill.Classification} />
+      <Box title="Location" titleTwo="Summit">
+        <>
+          <Row title={"Country:"} data={selectedHill.Country} />
+          <Row title={"County:"} data={selectedHill.County} />
+          {selectedHill.Island && (
+            <Row title={"Island:"} data={selectedHill.Island} />
+          )}
+        </>
+        <>
+          {selectedHill.Feature && (
+            <Row title="Feature" data={selectedHill.Feature} />
+          )}
+          {selectedHill.Observations && (
+            <Row title={"Observations:"} data={selectedHill.Observations} />
+          )}
+          {selectedHill.Survey && (
+            <Row title={"Survey Method:"} data={selectedHill.Survey} />
+          )}
+        </>
       </Box>
-      <Box title="Area">
-        <Row title={"Area:"} data={selectedHill.Area} />
-        <Row title={"col grid ref:"} data={selectedHill.Col_grid_ref} />
-        <Row title={"col height:"} data={selectedHill.Col_height} />
-        <Row title={"country:"} data={selectedHill.Country} />
-        <Row title={"county:"} data={selectedHill.County} />
-        <Row title={"geography:"} data={selectedHill.Geography} />
-        <Row title={"grid ref:"} data={selectedHill.Grid_ref} />
-        <Row title={"grid ref 10:"} data={selectedHill.Grid_ref_10} />
-        <Row title={"grid ref XY:"} data={selectedHill.gridrefXY} />
-        <Row title={"island:"} data={selectedHill.Island} />
-        <Row title={"long:"} data={selectedHill.Longitude} />
-        <Row title={"lat:"} data={selectedHill.Latitude} />
-        <Row title={"parent ma:"} data={selectedHill.Parent_Ma} />
-        <Row title={"parent smc:"} data={selectedHill.Parent_SMC} />
-        <Row title={"region:"} data={selectedHill.Region} />
-        <Row title={"topo section:"} data={selectedHill.Topo_Section} />
-        <Row title={"section int:"} data={selectedHill.Section_int} />
-        <Row title={"survey:"} data={selectedHill.Survey} />
-        <Row title={"x cords:"} data={selectedHill.Xcoord} />
-        <Row title={"y cords:"} data={selectedHill.Ycoord} />
-        <Row title={"observations:"} data={selectedHill.Observations} />
-      </Box>
-      <Box title="Top">
-        <Row title={"Summit Feature:"} data={selectedHill.Feature} />
-      </Box>
-      <Box title="Map">
-        <Row data={"Map"} />
-      </Box>
-      <Box title="Bagged">
-        <Row data={"Record"} />
-      </Box>
-      <Box title="wether">
-        <Row data={"weather"} />
-      </Box>
-      <Box title="Photos">
-        <Row data={"Photos"} />
-      </Box>
-      <Box title="History/Meaning ">
-        <Row data={"maybe"} />
-      </Box>
-      <Box title="Comments">
-        <Row data={"User Comments"} />
+      <MapComponent
+        lati={selectedHill.Latitude}
+        long={selectedHill.Longitude}
+      />
+      <WeatherComponent />
+      <Box title="Reference">
+        <>
+          <Row title={"Section Num:"} data={selectedHill.Section_int} />
+          <Row title={"Area:"} data={selectedHill.Area} />
+          <Row
+            title={"Maps Grid Ref (6-figure):"}
+            data={selectedHill.Grid_ref}
+          />
+          <Row
+            title={"GPS Grid Ref (10-figure):"}
+            data={selectedHill.Grid_ref_10}
+          />
+          <Row title={"Grid Ref XY:"} data={selectedHill.gridrefXY} />
+          <Row
+            title={"Topo Section (Alan Dawson's):"}
+            data={selectedHill.Topo_Section}
+          />
+          <Row title={"Geography Website:"} data={selectedHill.Geography} />
+          <Row title={"SMC/rhb Region:"} data={selectedHill.Region} />
+        </>
       </Box>
     </Layout_Basic>
   );
 }
-
-// <div className="flex-1 xl:basis-10/12 xl:rounded-xl my-1 p-5 bg-white ">
