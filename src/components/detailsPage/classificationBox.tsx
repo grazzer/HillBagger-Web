@@ -137,8 +137,13 @@ export default function ClassificationBox({
       default:
         text = textArray[i];
     }
-    jsxArray.push(<p> {text} </p>);
-    if (i != textArray.length - 1) jsxArray.push(<p className="pr-2">,</p>);
+    jsxArray.push(<p key={i}> {text} </p>);
+    if (i != textArray.length - 1)
+      jsxArray.push(
+        <p key={i + ","} className="pr-2">
+          ,
+        </p>
+      );
   }
   return (
     <Box title="Classification">
