@@ -1,16 +1,16 @@
-import { getRouteApi, useLoaderData, useSearch } from "@tanstack/react-router";
+import { getRouteApi, useSearch } from "@tanstack/react-router";
 import { Layout_Basic } from "../components/pageLayouts/layout_basic";
 import Box from "../components/detailsPage/box";
 import Row from "../components/detailsPage/row";
 import ClassificationBox from "../components/detailsPage/classificationBox";
 import MapComponent from "../components/detailsPage/mapComponent";
 import WeatherComponent from "../components/detailsPage/weatherComponent";
+import type { hill } from "../types/hill";
 
 export default function DetailsPage() {
-  // const navigate = useNavigate({ from: "/" });
-  const data = useLoaderData({ from: "/$details" });
+  //TODO: is there a difference -- // const data: [[hill], number] = useLoaderData({ from: "/$details" });
+  const data: [[hill], number] = getRouteApi("/").useLoaderData();
   const hills = data[0];
-  const countHills = data[1];
 
   const { selectedIndex } = useSearch({
     from: "/$details",
@@ -50,12 +50,21 @@ export default function DetailsPage() {
           {selectedHill.Parent_name_Ma && (
             <>
               <Row title={"Parent Ma:"} data={selectedHill.Parent_name_Ma} />
-              <Row title={"Parent Ma Num:"} data={selectedHill.Parent_Ma} />
-              <Row title={"Parent SMC:"} data={selectedHill.Parent_SMC} />
+              <Row
+                title={"Parent Ma Num:"}
+                data={selectedHill.Parent_Ma.toString()}
+              />
+              <Row
+                title={"Parent SMC:"}
+                data={selectedHill.Parent_SMC?.toString()}
+              />
             </>
           )}
-          <Row title={"Drop:"} data={selectedHill.Drop} />
-          <Row title={"Col Height:"} data={selectedHill.Col_height} />
+          <Row title={"Drop:"} data={selectedHill.Drop.toString()} />
+          <Row
+            title={"Col Height:"}
+            data={selectedHill.Col_height.toString()}
+          />
           <Row title={"Col Grid Ref:"} data={selectedHill.Col_grid_ref} />
         </>
       </Box>
@@ -87,7 +96,10 @@ export default function DetailsPage() {
       <WeatherComponent />
       <Box title="Reference">
         <>
-          <Row title={"Section Num:"} data={selectedHill.Section_int} />
+          <Row
+            title={"Section Num:"}
+            data={selectedHill.Section_int.toString()}
+          />
           <Row title={"Area:"} data={selectedHill.Area} />
           <Row
             title={"Maps Grid Ref (6-figure):"}
@@ -97,12 +109,18 @@ export default function DetailsPage() {
             title={"GPS Grid Ref (10-figure):"}
             data={selectedHill.Grid_ref_10}
           />
-          <Row title={"Grid Ref XY:"} data={selectedHill.gridrefXY} />
+          <Row
+            title={"Grid Ref XY:"}
+            data={selectedHill.GridrefXY.toString()}
+          />
           <Row
             title={"Topo Section (Alan Dawson's):"}
             data={selectedHill.Topo_Section}
           />
-          <Row title={"Geography Website:"} data={selectedHill.Geography} />
+          <Row
+            title={"Geography Website:"}
+            data={selectedHill.Geograph.toString()}
+          />
           <Row title={"SMC/rhb Region:"} data={selectedHill.Region} />
         </>
       </Box>

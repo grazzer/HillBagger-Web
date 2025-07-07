@@ -5,11 +5,11 @@ export default function ClassificationBox({
 }: {
   ClassificationCSV: string;
 }) {
-  var textArray = [];
-  var jsxArray = [];
+  let textArray = [];
+  const jsxArray = [];
   textArray = ClassificationCSV.split(",");
-  for (var i = 0; i < textArray.length; i++) {
-    var text = "";
+  for (let i = 0; i < textArray.length; i++) {
+    let text = "";
     switch (textArray[i]) {
       case "Ma":
         text = "Marilyn";

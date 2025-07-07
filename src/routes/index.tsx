@@ -1,13 +1,7 @@
-import {
-  createFileRoute,
-  notFound,
-  retainSearchParams,
-  useNavigate,
-} from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import HillsListPage from "../pages/hillsListPage";
 import * as z from "zod";
 import { getHillsNew } from "../services/hillsApi";
-import { useContext } from "react";
 import LoadingPage from "../pages/loadingPage";
 
 const searchParametersSchema = z.object({

@@ -7,10 +7,6 @@ export async function getHills(queryParams: string) {
   });
 }
 
-async function sleep(ms: number): Promise<void> {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
-
 export async function getHillsNew(
   classification: string,
   pagination: number,

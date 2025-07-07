@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import TextField from "@mui/material/TextField";
 import Pagination from "@mui/material/Pagination";
 import ClassificationRadial from "../components/classificationRadial";
@@ -8,6 +7,7 @@ import HillsTable from "../components/hillsTable";
 import HillsTableDescription from "../components/hillsTabelDiscription";
 import { getRouteApi, useNavigate, useSearch } from "@tanstack/react-router";
 import { Layout_Basic } from "../components/pageLayouts/layout_basic";
+import type { hill } from "../types/hill";
 
 export default function HillsListPage() {
   const { searchString, pagination } = useSearch({
@@ -15,15 +15,14 @@ export default function HillsListPage() {
   });
   const navigate = useNavigate({ from: "/" });
 
-  const routeApi = getRouteApi("/");
-  const data: [any, any] = getRouteApi("/").useLoaderData();
-  const hills = data[0];
+  const data: [[hill], number] = getRouteApi("/").useLoaderData();
   const countHills = data[1];
 
   const handleTablePageChange = (
     event: React.ChangeEvent<unknown>,
     value: number
   ) => {
+    console.log(event);
     navigate({
       search: (prev) => ({
         classification: prev.classification,

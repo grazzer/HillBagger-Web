@@ -1,12 +1,4 @@
-import {
-  APIProvider,
-  Map,
-  Marker,
-  Pin,
-  AdvancedMarker,
-  useMap,
-} from "@vis.gl/react-google-maps";
-import { useCallback, useState } from "react";
+import { Map, Pin, AdvancedMarker, useMap } from "@vis.gl/react-google-maps";
 
 export default function MapComponent({
   lati,

@@ -8,7 +8,7 @@ export default function Box({
   title: string;
   titleTwo?: string;
 }) {
-  let myChildren = Children.toArray(children);
+  const myChildren = Children.toArray(children);
 
   if (myChildren[1]) {
     return (

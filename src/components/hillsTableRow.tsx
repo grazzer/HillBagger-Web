@@ -1,9 +1,9 @@
 import { getRouteApi, useNavigate } from "@tanstack/react-router";
+import type { hill } from "../types/hill";
 
 export default function HillsTableRows() {
-  const data = getRouteApi("/").useLoaderData();
+  const data: [[hill], number] = getRouteApi("/").useLoaderData();
   const hills = data[0];
-  const countHills = data[1];
 
   const navigate = useNavigate();
 
@@ -11,11 +11,11 @@ export default function HillsTableRows() {
     navigate({
       from: "/",
       to: "/$details",
-      params: { details: "name" },
+      params: { details: name },
       search: () => ({ selectedIndex: selected }),
     });
   }
-  if (hills[0] == null) {
+  if (hills.length === 1) {
     return (
       <tr>
         <td>
@@ -24,7 +24,7 @@ export default function HillsTableRows() {
       </tr>
     );
   }
-  return hills.map((hill: any, index: number) => (
+  return hills.map((hill: hill, index: number) => (
     <tr
       key={hill.Number}
       className="bg-white drop-shadow-lg hover:bg-gray-300"
