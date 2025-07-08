@@ -9,7 +9,7 @@ import type { hill } from "../types/hill";
 
 export default function DetailsPage() {
   //TODO: is there a difference -- // const data: [[hill], number] = useLoaderData({ from: "/$details" });
-  const data: [[hill], number] = getRouteApi("/").useLoaderData();
+  const data: [[hill], number] = getRouteApi("/$details").useLoaderData();
   const hills = data[0];
 
   const { selectedIndex } = useSearch({
