@@ -10,7 +10,7 @@ export default function Box({
 }) {
   const myChildren = Children.toArray(children);
 
-  if (myChildren[1]) {
+  if (myChildren.length === 2) {
     return (
       <div className="pb-5">
         <div className="flex -mb-1.5 flex-row ">
@@ -39,11 +39,8 @@ export default function Box({
   return (
     <div className="pb-5">
       <div className="flex -mb-1.5 flex-row ">
-        <div className=" flex-1">
+        <div className="flex-1">
           <p className="inline ml-3 px-1.5 bg-white">{title}</p>
-        </div>
-        <div className="invisible md:visible flex-1 ">
-          <p className="inline ml-3 px-1.5 bg-white">{titleTwo}</p>
         </div>
       </div>
       <div className=" flex sm:flex-row flex-col rounded-xl border border-gray-300">

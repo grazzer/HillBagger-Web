@@ -42,8 +42,6 @@ export default function HillsListPage() {
       </div>
       {/* table container */}
       <div className="flex flex-row">
-        {/* sidebar */}
-        <div className="flex xl:basis-1/12 " />
         {/* Hills Table  */}
         <div className="flex flex-1 flex-col">
           <div className="flex flex-col px-5">
@@ -76,8 +74,6 @@ export default function HillsListPage() {
             />
           </div>
         </div>
-        {/* sidebar */}
-        <div className="flex xl:basis-1/12 " />
       </div>
     </Layout_Basic>
   );
