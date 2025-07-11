@@ -8,15 +8,14 @@ import WeatherComponent from "../components/detailsPage/weatherComponent";
 import type { hill } from "../types/hill";
 
 export default function DetailsPage() {
-  //TODO: is there a difference -- // const data: [[hill], number] = useLoaderData({ from: "/$details" });
-  const data: [[hill], number] = getRouteApi("/$details").useLoaderData();
+  //TODO: is there a difference -- // const data: [[hill], number] = useLoaderData({ from: "/HillDetails" });
+  const data: [[hill], number] = getRouteApi("/details").useLoaderData();
   const hills = data[0];
 
   const { selectedIndex } = useSearch({
-    from: "/$details",
+    from: "/details",
   });
   const selectedHill = hills[selectedIndex];
-  console.log(selectedHill);
 
   return (
     <Layout_Basic>
@@ -93,6 +92,13 @@ export default function DetailsPage() {
         lati={selectedHill.Latitude}
         long={selectedHill.Longitude}
       />
+      <button
+        onClick={() => {
+          document.body.querySelector("#main-scrollable-area")?.scroll(0, 0);
+        }}
+      >
+        To The Top
+      </button>
       <WeatherComponent />
       <Box title="Reference">
         <>

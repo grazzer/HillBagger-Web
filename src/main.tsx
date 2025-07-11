@@ -9,6 +9,7 @@ import { APIProvider } from "@vis.gl/react-google-maps";
 const router = createRouter({
   routeTree,
   context: { hills: [] },
+  scrollToTopSelectors: ["#main-scrollable-area"],
 });
 
 // Register the router instance for type safety

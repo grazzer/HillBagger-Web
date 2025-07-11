@@ -11,14 +11,14 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
-import { Route as DetailsImport } from './routes/$details'
+import { Route as DetailsImport } from './routes/details'
 import { Route as IndexImport } from './routes/index'
 
 // Create/Update Routes
 
 const DetailsRoute = DetailsImport.update({
-  id: '/$details',
-  path: '/$details',
+  id: '/details',
+  path: '/details',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -39,10 +39,10 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
-    '/$details': {
-      id: '/$details'
-      path: '/$details'
-      fullPath: '/$details'
+    '/details': {
+      id: '/details'
+      path: '/details'
+      fullPath: '/details'
       preLoaderRoute: typeof DetailsImport
       parentRoute: typeof rootRoute
     }
@@ -53,26 +53,26 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/$details': typeof DetailsRoute
+  '/details': typeof DetailsRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/$details': typeof DetailsRoute
+  '/details': typeof DetailsRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
-  '/$details': typeof DetailsRoute
+  '/details': typeof DetailsRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/$details'
+  fullPaths: '/' | '/details'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/$details'
-  id: '__root__' | '/' | '/$details'
+  to: '/' | '/details'
+  id: '__root__' | '/' | '/details'
   fileRoutesById: FileRoutesById
 }
 
@@ -97,14 +97,14 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
-        "/$details"
+        "/details"
       ]
     },
     "/": {
       "filePath": "index.tsx"
     },
-    "/$details": {
-      "filePath": "$details.tsx"
+    "/details": {
+      "filePath": "details.tsx"
     }
   }
 }

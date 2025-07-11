@@ -1,8 +1,6 @@
 import TextField from "@mui/material/TextField";
 import Pagination from "@mui/material/Pagination";
 import ClassificationRadial from "../components/classificationRadial";
-// import { useHillsStore } from "../hillsStore";
-
 import HillsTable from "../components/hillsTable";
 import HillsTableDescription from "../components/hillsTabelDiscription";
 import { getRouteApi, useNavigate, useSearch } from "@tanstack/react-router";
@@ -22,7 +20,7 @@ export default function HillsListPage() {
     event: React.ChangeEvent<unknown>,
     value: number
   ) => {
-    console.log(event);
+    document.body.querySelector("#table-scrollable-area")?.scrollIntoView();
     navigate({
       search: (prev) => ({
         classification: prev.classification,
@@ -47,31 +45,33 @@ export default function HillsListPage() {
           <div className="flex flex-col px-5">
             <HillsTableDescription />
           </div>
-          <div className="pt-10">
-            {/* TODO: text input lag when OR operator used */}
-            <TextField
-              // value={searchString || ""}
-              value={searchString}
-              fullWidth
-              label="Search Hills"
-              onChange={(input) => {
-                navigate({
-                  search: (prev) => ({
-                    classification: prev.classification,
-                    direction: prev.direction,
-                    searchString: input.target.value,
-                  }),
-                });
-              }}
-            />
-          </div>
-          <HillsTable />
-          <div className="flex justify-center pb-10">
-            <Pagination
-              page={pagination + 1}
-              count={Math.floor(countHills / 20) + 1}
-              onChange={handleTablePageChange}
-            />
+          <div id="table-scrollable-area">
+            <div className="pt-10">
+              {/* TODO: text input lag when OR operator used */}
+              <TextField
+                // value={searchString || ""}
+                value={searchString}
+                fullWidth
+                label="Search Hills"
+                onChange={(input) => {
+                  navigate({
+                    search: (prev) => ({
+                      classification: prev.classification,
+                      direction: prev.direction,
+                      searchString: input.target.value,
+                    }),
+                  });
+                }}
+              />
+            </div>
+            <HillsTable />
+            <div className="flex justify-center pb-10">
+              <Pagination
+                page={pagination + 1}
+                count={Math.floor(countHills / 20) + 1}
+                onChange={handleTablePageChange}
+              />
+            </div>
           </div>
         </div>
       </div>

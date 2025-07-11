@@ -37,5 +37,6 @@ export const Route = createFileRoute("/")({
 });
 
 function RouteComponent() {
+  document.body.querySelector("#main-scrollable-area")?.scroll(0, 0);
   return <HillsListPage />;
 }

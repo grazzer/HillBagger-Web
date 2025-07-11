@@ -12,8 +12,7 @@ const searchParametersSchema = z.object({
   selectedIndex: z.number().catch(0),
 });
 
-export const Route = createFileRoute("/$details")({
-  component: RouteComponent,
+export const Route = createFileRoute("/details")({
   validateSearch: searchParametersSchema,
   search: {
     middlewares: [
@@ -37,9 +36,11 @@ export const Route = createFileRoute("/$details")({
   loader: async ({
     deps: { classification, pagination, direction, searchString },
   }) => await getHillsNew(classification, pagination, direction, searchString),
+  component: RouteComponent,
   pendingComponent: () => <LoadingPage />,
 });
 
 function RouteComponent() {
+  document.body.querySelector("#main-scrollable-area")?.scroll(0, 0);
   return <DetailsPage />;
 }

@@ -10,7 +10,7 @@ export default function HillsTableRows() {
   function handleClick(selected: number, name: string) {
     navigate({
       from: "/",
-      to: "/$details",
+      to: "/details",
       params: { details: name },
       search: () => ({ selectedIndex: selected }),
     });
