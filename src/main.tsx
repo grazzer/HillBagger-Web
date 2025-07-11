@@ -3,11 +3,13 @@ import { createRoot } from "react-dom/client";
 import "./index.css";
 import { routeTree } from "./routeTree.gen.ts";
 import { createRouter, RouterProvider } from "@tanstack/react-router";
-// import { StyledEngineProvider } from "@mui/material/styles";
 import { APIProvider } from "@vis.gl/react-google-maps";
 
 // Create a new router instance
-const router = createRouter({ routeTree, context: { hills: [] } });
+const router = createRouter({
+  routeTree,
+  context: { hills: [] },
+});
 
 // Register the router instance for type safety
 declare module "@tanstack/react-router" {

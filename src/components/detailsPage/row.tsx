@@ -12,7 +12,7 @@ export default function Row({
           {title}
         </p>
       ) : null}
-      <p className="break-all bg-amber-500">{data}</p>
+      <p className="break-all">{data}</p>
     </div>
   );
 }

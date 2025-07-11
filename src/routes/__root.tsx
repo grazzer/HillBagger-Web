@@ -3,6 +3,7 @@ import { Outlet, createRootRouteWithContext } from "@tanstack/react-router";
 import { Header } from "../components/pageLayouts/header";
 import ErrorPage from "../pages/errorPage";
 import notFoundPage from "../pages/notFoundPage";
+import { useStore } from "../Store";
 
 type RouterContext = {
   hills: [];
@@ -19,10 +20,17 @@ export const Route = createRootRouteWithContext<RouterContext>()({
 });
 
 function RootComponent() {
+  const burgerMenuOpen = useStore();
   return (
     <React.Fragment>
-      <Header />
-      <Outlet />
+      <div
+        className={
+          burgerMenuOpen ? "h-screen overflow-auto" : "h-screen overflow-hidden"
+        }
+      >
+        <Header />
+        <Outlet />
+      </div>
     </React.Fragment>
   );
 }
