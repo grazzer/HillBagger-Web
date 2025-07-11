@@ -19,18 +19,12 @@ export const Route = createRootRouteWithContext<RouterContext>()({
   },
 });
 
-// console.log(document.getElementById("main-scrollable-area"));
-console.log(document.body.querySelector("#main-scrollable-area"));
-
 function RootComponent() {
   const burgerMenuOpen = useStore();
   return (
     <React.Fragment>
       <div
         id={"main-scrollable-area"}
-        onScroll={() => {
-          console.log("scroll");
-        }}
         className={
           burgerMenuOpen ? "h-screen overflow-auto" : "h-screen overflow-hidden"
         }
