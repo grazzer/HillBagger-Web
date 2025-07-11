@@ -17,7 +17,7 @@ export default function HillsListPage() {
   const countHills = data[1];
 
   const handleTablePageChange = (
-    event: React.ChangeEvent<unknown>,
+    // event: React.ChangeEvent<unknown>,
     value: number
   ) => {
     document.body.querySelector("#table-scrollable-area")?.scrollIntoView();
@@ -69,7 +69,7 @@ export default function HillsListPage() {
               <Pagination
                 page={pagination + 1}
                 count={Math.floor(countHills / 20) + 1}
-                onChange={handleTablePageChange}
+                onChange={() => handleTablePageChange}
               />
             </div>
           </div>
