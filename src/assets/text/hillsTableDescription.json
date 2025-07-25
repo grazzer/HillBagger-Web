@@ -1,0 +1,77 @@
+{
+  "_lang": "en-UK",
+  "descriptions": {
+    "all": {
+      "title": "All Hills",
+      "description": ["A list of all hills and mounties in Great Britain."]
+    },
+    "scotland": {
+      "title": "Scotland",
+      "description": ["A list of all hills and mounties in Scotland."]
+    },
+    "england": {
+      "title": "England",
+      "description": ["A list of all hills and mounties in England."]
+    },
+    "wales": {
+      "title": "Wales",
+      "description": ["A list of all hills and mounties in Wales."]
+    },
+    "ireland": {
+      "title": "Ireland",
+      "description": [
+        "A list of all hills and mounties in island of Ireland. Including both the republic of Ireland and Northern Ireland."
+      ]
+    },
+
+    "munro": {
+      "title": "Munros",
+      "description": [
+        "A Munro is a Scottish mountain that is over 3,000 feet (914.4m) with sufficient separation from their neighboring peaks.",
+        "The list was compiled in 1991 by Sir Hugo for the Scottish Mountaineering Club (SMC) journal and is still maintained by the SMC and currently contains 282 peaks.",
+        "Munro left no specific definition for sufficient separation however there is a separate list of Munro Tops detailing all Scottish peaks over 3,000 ft (914.4m) that fail to meet the criteria of sufficient separation"
+      ]
+    },
+    "corbett": {
+      "title": "Corbetts",
+      "description": [
+        "A Corbett is a Scottish peak with a height of 2500ft (762m) or over, and less than 3000ft (914.4m) with a drop of at least 500ft (152.4 m).",
+        "The list original was compiled in the 1920’s by John Rooke Corbett. Corbett was the second person to summit the Munro’s and Munro Tops as well as climbing all Scotlands 2000ft hills (Donalds). The list is maintained by the Scottish Mountaineering Club (SMC) and currently contains 282 peaks."
+      ]
+    },
+    "graham": {
+      "title": "Grahams",
+      "description": [
+        "A Graham is a Scottish peak with a height of 600m or over, and less than 2500ft (762m) with a drop of at least 150m.",
+        "The list was originally compiled in 1992 by Fiona Torbet (Fiona Graham) and Alan Dawson. The list was named in memory of its co creator Fiona. The official list of Grahams is maintained by Alan Dawson"
+      ]
+    },
+    "donald": {
+      "title": "Donald Hills ??",
+      "description": [
+        "A Marilyn is simply defined as a hill within Great Britain or Ireland with a prominence of 150 metres or more regardless of height."
+      ]
+    },
+    "marilyn": {
+      "title": "Marilyns",
+      "description": [
+        "A Marilyn is a peak that has a drop of 150m (492ft) or more regardless of height or isolation (as used with Munros).",
+        "The list was created by Alan Dawson in 1992. The list is named as a pun to accompany the Munros, after the singer Marilyn Munroe. there are currently 2,010 recorded Marilyns. "
+      ]
+    },
+    "nuttall": {
+      "title": "Nuttalls",
+      "description": [
+        "A Nuttall is an English or Welsh mountain with a height of 2000 ft (610m) or over and a drop of at least 50ft (15m).",
+        "The list was original was compiled by Anne and John Nuttall in 1990 and contains 446 peaks, 257 in England and 189 in Wales. "
+      ]
+    },
+    "wainwright": {
+      "title": "Wainwrights",
+      "description": [
+        "A Wainwright is an English peak (fell) which can be found in Alfred Wainwright's Pictorial Guides to the Lakeland Fells. All Wainwrights can be found within the boundary of the Lake District National Park and all but one have a height of 1000ft (305m) or over.",
+        "The Pictorial Guides to the Lakeland Fells consists of seven books released between 1955 to 1966 and has remained unchanged. There are 214 Wainwrights."
+      ]
+    }
+  }
+}

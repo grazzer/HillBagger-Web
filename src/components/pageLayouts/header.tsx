@@ -90,7 +90,7 @@ export function Header() {
       {/* // hamburger menu open */}
       {burgerMenuOpen && (
         <header className="fixed top-0 left-0 h-screen w-screen z-10 bg-white">
-          <div className="flex-col">
+          <div className="pr-4 flex-col">
             <div className="flex w-full pr-5 pt-1 items-center justify-end">
               <Hamburger
                 toggled={burgerMenuOpen}

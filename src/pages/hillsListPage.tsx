@@ -1,11 +1,11 @@
 import TextField from "@mui/material/TextField";
 import Pagination from "@mui/material/Pagination";
-import ClassificationRadial from "../components/classificationRadial";
 import HillsTable from "../components/hillsTable";
 import HillsTableDescription from "../components/hillsTabelDiscription";
 import { getRouteApi, useNavigate, useSearch } from "@tanstack/react-router";
 import { Layout_Basic } from "../components/pageLayouts/layout_basic";
 import type { hill } from "../types/hill";
+import ClassificationSelector from "../components/hillsListPage/classificationSelector";
 
 export default function HillsListPage() {
   const { searchString, pagination } = useSearch({
@@ -31,19 +31,17 @@ export default function HillsListPage() {
       }),
     });
   };
-
   return (
     //screen
     <Layout_Basic>
-      {/* classification selector  */}
-      <div className="flex justify-center pt-10">
-        <ClassificationRadial />
+      <div className="flex justify-center md:pt-10">
+        <ClassificationSelector />
       </div>
       {/* table container */}
       <div className="flex flex-row">
         {/* Hills Table  */}
         <div className="flex flex-1 flex-col">
-          <div className="flex flex-col px-5">
+          <div className="flex flex-col md:px-5">
             <HillsTableDescription />
           </div>
           <div id="table-scrollable-area">
