@@ -1,50 +1,19 @@
-# React + TypeScript + Vite
+# Hill Bagger Web App
+Vite React TS
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This front-end application allows for users to search for and log their assents for all the hills, mountains and peaks across Britan and Ireland. 
 
-Currently, two official plugins are available:
+The site is temporarily hosted [here](https://hillbagger.onrender.com/) while development continues. 
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+<p align="center" width="100%">
+  <img width="630" height="630" margin="auto" alt="Untitled design" src="https://github.com/user-attachments/assets/7b4ff2d0-d97a-4d48-b7a2-766a338daa8d" />
+</p>
+# Built With
+This project was built using these technologies. 
+* Vite
+* React
+* TanStack Router
+* React Google Maps
 
-## Expanding the ESLint configuration
+fully resopnsive design styled using tailwind  
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
-
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
